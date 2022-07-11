@@ -87,22 +87,26 @@ fun RowScreen() {
         color = Color.LightGray,
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.TopCenter)
+            .wrapContentSize()
     ) {
-        Row(modifier = Modifier.padding(8.dp)) {
-            Surface(
-                color = Color.Red, modifier = Modifier
-                    .wrapContentSize()
-            ) {
-                Text(text = "Android developer", modifier = Modifier.padding(8.dp))
-            }
-            Surface(
-                color = Color.Green, modifier = Modifier
-                    .wrapContentSize()
-            ) {
-                Text(text = "Swapnil Bhojwani", Modifier.padding(8.dp))
-            }
+        Row(
+            modifier = Modifier.padding(8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Top
+        ) {
+            RowSurfaceWithText(Color.Red, "Android developer")
+            RowSurfaceWithText(color = Color.Green, message = "Swapnil Bhojwani")
         }
+    }
+}
+
+@Composable
+fun RowSurfaceWithText(color: Color, message: String) {
+    Surface(
+        color = color, modifier = Modifier
+            .wrapContentSize()
+    ) {
+        Text(text = message, modifier = Modifier.padding(8.dp))
     }
 }
 
