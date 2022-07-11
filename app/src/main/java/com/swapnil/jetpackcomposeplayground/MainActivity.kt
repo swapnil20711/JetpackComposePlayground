@@ -10,20 +10,19 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.swapnil.jetpackcomposeplayground.ui.theme.JetpackComposePlaygroundTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JetpackComposePlaygroundTheme {
+            /*JetpackComposePlaygroundTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -31,7 +30,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Greeting("Android")
                 }
-            }
+            }*/
+//            MainScreen()
+            RowScreen()
         }
     }
 }
@@ -40,7 +41,8 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String) {
     val context = LocalContext.current
 
-    Text(text = "Hello $name!",
+    Text(
+        text = "Hello $name!",
         Modifier
             .wrapContentWidth()
             .wrapContentHeight()
@@ -49,13 +51,67 @@ fun Greeting(name: String) {
                 Toast
                     .makeText(context, "Text clicked", Toast.LENGTH_SHORT)
                     .show()
-            },style = TextStyle(color = Color.Green, fontSize = 24.sp))
+            },
+        style = MaterialTheme.typography.caption,
+        color = Color.Green,
+        fontWeight = FontWeight.SemiBold
+    )
+}
+
+@Composable
+fun MainScreen() {
+    Surface(
+        color = Color.LightGray, modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp)
+    ) {
+
+        Surface(
+            color = Color.Magenta, modifier = Modifier
+                .wrapContentSize(Alignment.TopCenter)
+                .padding(8.dp)
+        ) {
+            Text(
+                text = "Wrapped text",
+                modifier = Modifier
+                    .padding(8.dp),
+                style = MaterialTheme.typography.h4
+            )
+        }
+    }
+}
+
+@Composable
+fun RowScreen() {
+    Surface(
+        color = Color.LightGray,
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentSize(Alignment.TopCenter)
+    ) {
+        Row(modifier = Modifier.padding(8.dp)) {
+            Surface(
+                color = Color.Red, modifier = Modifier
+                    .wrapContentSize()
+            ) {
+                Text(text = "Android developer", modifier = Modifier.padding(8.dp))
+            }
+            Surface(
+                color = Color.Green, modifier = Modifier
+                    .wrapContentSize()
+            ) {
+                Text(text = "Swapnil Bhojwani", Modifier.padding(8.dp))
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    JetpackComposePlaygroundTheme {
+/*    JetpackComposePlaygroundTheme {
         Greeting("Android")
-    }
+    }*/
+//    MainScreen()
+    RowScreen()
 }
