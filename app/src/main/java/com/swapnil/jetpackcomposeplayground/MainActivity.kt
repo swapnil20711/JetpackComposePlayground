@@ -18,6 +18,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+val namesList: List<String> = listOf(
+    "swapnil",
+    "swap0",
+    "john",
+    "kr$",
+    "emiway"
+)
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +40,8 @@ class MainActivity : ComponentActivity() {
                 }
             }*/
 //            MainScreen()
-            RowScreen()
+//            RowScreen()
+            GreetingList(namesList = namesList)
         }
     }
 }
@@ -44,7 +53,7 @@ fun Greeting(name: String) {
     Text(
         text = "Hello $name!",
         Modifier
-            .wrapContentWidth()
+            .fillMaxWidth()
             .wrapContentHeight()
             .padding(16.dp)
             .clickable {
@@ -52,7 +61,7 @@ fun Greeting(name: String) {
                     .makeText(context, "Text clicked", Toast.LENGTH_SHORT)
                     .show()
             },
-        style = MaterialTheme.typography.caption,
+        style = MaterialTheme.typography.h4,
         color = Color.Green,
         fontWeight = FontWeight.SemiBold
     )
@@ -117,5 +126,6 @@ fun DefaultPreview() {
         Greeting("Android")
     }*/
 //    MainScreen()
-    RowScreen()
+//    RowScreen()
+    GreetingList(namesList = namesList)
 }
