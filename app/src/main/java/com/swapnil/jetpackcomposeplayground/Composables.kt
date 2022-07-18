@@ -1,39 +1,14 @@
 package com.swapnil.jetpackcomposeplayground
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-
-@Composable
-fun GreetingList(namesList: SnapshotStateList<String>) {
-    val list = remember {
-        namesList
-    }
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceEvenly,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        for (name in list) {
-            Greeting(name = name)
-        }
-        Button(onClick = {
-            list.add("testing")
-        }) {
-            Text(text = "Add element")
-        }
-    }
-}
 
 /*
 * Learning states
@@ -41,8 +16,8 @@ fun GreetingList(namesList: SnapshotStateList<String>) {
 @Composable
 fun WaterCounter() {
     Column(modifier = Modifier.padding(16.dp)) {
-        var count by rememberSaveable { mutableStateOf(0) }
-        StateLessCounter(count, { count++ })
+        var count = remember { mutableStateOf(0) }
+        StateLessCounter(count.value, { count.value++ })
     }
 }
 
